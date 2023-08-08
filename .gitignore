@@ -1,0 +1,10 @@
+# Ignore build files
+[Bb][Uu][Ii][Ll][Dd]/
+[Bb][Ii][Nn]/
+[Oo][Uu][Tt]/
+
+# Ignore IDE generated files
+.vs/
+
+
+
