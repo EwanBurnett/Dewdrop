@@ -6,9 +6,11 @@ project("Dewdrop" LANGUAGES CXX)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 option(DEWDROP_BUILD_STATIC "Build Dewdrop as a Static Library" ON)
 option(DEWDROP_BUILD_EXAMPLES "Build Example Projects" ON)
+option(DEWDROP_BUILD_TESTS "Build Tests" ON)
 
 #set(DEWDROP_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/include" CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)
 set(DEWDROP_SOURCES "include/Dewdrop.h" "src/Dewdrop.cpp")
@@ -28,6 +30,11 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 	LINKER_LANGUAGE CXX
 	)
 
+if(DEWDROP_BUILD_TESTS)
+	add_subdirectory("tests")
+endif()
+
 if(DEWDROP_BUILD_EXAMPLES)
 	add_subdirectory("Examples")
 endif()
+
