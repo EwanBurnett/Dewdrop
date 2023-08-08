@@ -1,0 +1,7 @@
+#include <cstdint> 
+namespace Dewdrop {
+    constexpr uint32_t DEWDROP_VERSION_MAJOR = @Dewdrop_VERSION_MAJOR@;
+    constexpr uint32_t DEWDROP_VERSION_MINOR = @Dewdrop_VERSION_MINOR@;
+    constexpr uint32_t DEWDROP_VERSION_PATCH = @Dewdrop_VERSION_PATCH@;
+    constexpr uint32_t DEWDROP_VERSION_BUILD = @Dewdrop_VERSION_TWEAK@;
+}
