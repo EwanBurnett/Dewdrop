@@ -17,7 +17,7 @@ FetchContent_MakeAvailable(googleTest)
 
 enable_testing()
 
-add_executable(${PROJECT_NAME} tests.cpp)
+add_executable(${PROJECT_NAME}  "Maths.cpp" )
 
 target_link_libraries(${PROJECT_NAME} GTest::gtest_main Dewdrop)
 

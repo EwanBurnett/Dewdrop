@@ -18,7 +18,7 @@ option(DEWDROP_BUILD_STATIC "Build Dewdrop as a Static Library" ON)
 option(DEWDROP_BUILD_EXAMPLES "Build Example Projects" ON)
 option(DEWDROP_BUILD_TESTS "Build Tests" ON)
 
-set(DEWDROP_SOURCES "include/Dewdrop/Dewdrop.h" "src/Dewdrop.cpp" "include/Dewdrop/Version.h")
+set(DEWDROP_SOURCES "src/Dewdrop.cpp")
 include_directories("${CMAKE_SOURCE_DIR}/include")
 
 if(DEWDROP_BUILD_STATIC)
