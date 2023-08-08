@@ -5,7 +5,8 @@ project("Dewdrop-Tests")
 include(FetchContent)
 FetchContent_Declare(
 	googletest
-	URL https://github.com/google/googletest/archive/46db91ef6ffcc128b2d5f31118ae1108109e3400.zip
+	GIT_REPOSITORY https://github.com/google/googletest.git
+	GIT_TAG 46db91ef6ffcc128b2d5f31118ae1108109e3400 # release 1.14.0
 )
 
 if(WIN32)
