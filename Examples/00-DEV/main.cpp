@@ -1,4 +1,5 @@
-#include <Dewdrop.h>
+#include <Dewdrop/Dewdrop.h>
+#include <Dewdrop/Version.h>
 #include <glfw/glfw3.h> 
 #include <imgui.h>
 #include <cstdio>

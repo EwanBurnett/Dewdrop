@@ -1,4 +1,5 @@
-#include "../include/Dewdrop.h"
+#include "../include/Dewdrop/Dewdrop.h"
+#include "../include/Dewdrop/Version.h"
 #include <cstdio>
 
 void Dewdrop::Init() {

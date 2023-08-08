@@ -2,11 +2,14 @@
 # Ewan Burnett - 2023
 cmake_minimum_required(VERSION 3.14) 
 
-project("Dewdrop" LANGUAGES CXX)
+project("Dewdrop" LANGUAGES CXX VERSION 0.0.0.1)
+
 
 add_subdirectory("ThirdParty")
 
 # Build Dewdrop
+configure_file("${CMAKE_SOURCE_DIR}/tools/Version.h.in" "${CMAKE_SOURCE_DIR}/include/Dewdrop/Version.h")
+
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -15,7 +18,7 @@ option(DEWDROP_BUILD_STATIC "Build Dewdrop as a Static Library" ON)
 option(DEWDROP_BUILD_EXAMPLES "Build Example Projects" ON)
 option(DEWDROP_BUILD_TESTS "Build Tests" ON)
 
-set(DEWDROP_SOURCES "include/Dewdrop.h" "src/Dewdrop.cpp")
+set(DEWDROP_SOURCES "include/Dewdrop/Dewdrop.h" "src/Dewdrop.cpp" "include/Dewdrop/Version.h")
 include_directories("${CMAKE_SOURCE_DIR}/include")
 
 if(DEWDROP_BUILD_STATIC)
