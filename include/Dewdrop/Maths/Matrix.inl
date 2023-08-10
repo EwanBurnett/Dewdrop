@@ -1,8 +1,9 @@
-#include "Matrix.h"
+#include "../include/Dewdrop/Maths/Matrix.h"
+
 
 // MATRIX 2X2 
 
-Math::Matrix2x2::Matrix2x2() {
+Dewdrop::Math::Matrix2x2::Matrix2x2() {
     memset(_matrix, 0, sizeof(Matrix2x2));
 }
 
@@ -11,18 +12,18 @@ Math::Matrix2x2::Matrix2x2() {
  * \param matrix 
  * \return A float, containing the Determinant. 
 */
-float Math::Matrix2x2::Determinant(const Matrix2x2& matrix)
+float Dewdrop::Math::Matrix2x2::Determinant(const Matrix2x2& matrix)
 {
     return (matrix._matrix[0] * matrix._matrix[3]) - (matrix._matrix[1] * matrix._matrix[2]);
 }
 
 
 // MATRIX 3X3
-Math::Matrix3x3::Matrix3x3() {
+Dewdrop::Math::Matrix3x3::Matrix3x3() {
     memset(_matrix, 0, sizeof(Matrix3x3));
 }
  
-float Math::Matrix3x3::Determinant(const Matrix3x3& matrix)
+float Dewdrop::Math::Matrix3x3::Determinant(const Matrix3x3& matrix)
 {
     Matrix2x2 _a = {};
     {
@@ -54,12 +55,12 @@ float Math::Matrix3x3::Determinant(const Matrix3x3& matrix)
 
 // MATRIX 4X4
 
-Math::Matrix4x4::Matrix4x4() {
+Dewdrop::Math::Matrix4x4::Matrix4x4() {
     //Ensure the matrix is set to 0 by default. 
     memset(_matrix, 0, sizeof(Matrix4x4));
 }
 
-Math::Vector4f Math::Matrix4x4::Row(uint8_t index) const {
+Dewdrop::Math::Vector4f Dewdrop::Math::Matrix4x4::Row(uint8_t index) const {
     if (index > 3) index = 3;
     if (index < 0) index = 0;
 
@@ -67,7 +68,7 @@ Math::Vector4f Math::Matrix4x4::Row(uint8_t index) const {
     return *((Vector4f*)_matrix) + index;  //{ _matrix[0 + index], _matrix[1 + index], _matrix[2 + index], _matrix[3 + index] };
 }
 
-Math::Vector4f Math::Matrix4x4::Column(uint8_t index) const {
+Dewdrop::Math::Vector4f Dewdrop::Math::Matrix4x4::Column(uint8_t index) const {
     if (index > 3) index = 3;
     if (index < 0) index = 0;
 
@@ -77,7 +78,7 @@ Math::Vector4f Math::Matrix4x4::Column(uint8_t index) const {
 
 //Computes the 4x4 Identity Matrix (1's on the diagonal).
 //Identical for row / column major ordering. 
-Math::Matrix4x4 Math::Matrix4x4::Identity() {
+Dewdrop::Math::Matrix4x4 Dewdrop::Math::Matrix4x4::Identity() {
     Matrix4x4 out = {};
     memset(&out, 0, sizeof(Matrix4x4));
 
@@ -89,7 +90,7 @@ Math::Matrix4x4 Math::Matrix4x4::Identity() {
     return out;
 }
 
-Math::Matrix4x4 Math::Matrix4x4::Transpose(const Matrix4x4& matrix)
+Dewdrop::Math::Matrix4x4 Dewdrop::Math::Matrix4x4::Transpose(const Matrix4x4& matrix)
 {
     Matrix4x4 out = matrix;
 
@@ -105,7 +106,7 @@ Math::Matrix4x4 Math::Matrix4x4::Transpose(const Matrix4x4& matrix)
     return out;
 }
 
-Math::Matrix4x4 Math::Matrix4x4::Inverse(const Matrix4x4& matrix, bool& inverseExists)
+Dewdrop::Math::Matrix4x4 Dewdrop::Math::Matrix4x4::Inverse(const Matrix4x4& matrix, bool& inverseExists)
 {
     Matrix4x4 out = {};
 
@@ -242,7 +243,7 @@ Math::Matrix4x4 Math::Matrix4x4::Inverse(const Matrix4x4& matrix, bool& inverseE
     return out;
 }
 
-float Math::Matrix4x4::Determinant(const Matrix4x4& matrix) {
+float Dewdrop::Math::Matrix4x4::Determinant(const Matrix4x4& matrix) {
     Matrix3x3 _a = {};
     {
         _a._matrix[0] = matrix._matrix[5];
@@ -301,16 +302,16 @@ float Math::Matrix4x4::Determinant(const Matrix4x4& matrix) {
         );
 }
 
-Math::Vector4f Math::Matrix4x4::MMult_V4f_M4x4(const Vector4f& a, const Matrix4x4& b) {
+Dewdrop::Math::Vector4f Dewdrop::Math::Matrix4x4::MMult_V4f_M4x4(const Vector4f& a, const Matrix4x4& b) {
     Vector4f out = {};
 
-    if constexpr (ORDERING == Math::EMMultOrdering::Row) {
+    if constexpr (ORDERING == Dewdrop::Math::EMMultOrdering::Row) {
         //dot vector by Columns
         for (int i = 0; i < 4; i++) {
             out.arr[i] = Vector4f::Dot(a, b.Column(i));
         }
     }
-    else if constexpr (ORDERING == Math::EMMultOrdering::Column) {
+    else if constexpr (ORDERING == Dewdrop::Math::EMMultOrdering::Column) {
         //dot vector by rows
         for (int i = 0; i < 4; i++) {
             out.arr[i] = Vector4f::Dot(a, b.Row(i));
@@ -319,10 +320,10 @@ Math::Vector4f Math::Matrix4x4::MMult_V4f_M4x4(const Vector4f& a, const Matrix4x
     return out;
 }
 
-Math::Matrix4x4 Math::Matrix4x4::MMult_M4x4_M4x4(const Matrix4x4& a, const Matrix4x4& b) {
+Dewdrop::Math::Matrix4x4 Dewdrop::Math::Matrix4x4::MMult_M4x4_M4x4(const Matrix4x4& a, const Matrix4x4& b) {
     Matrix4x4 out = {};
 
-    if constexpr (ORDERING == Math::EMMultOrdering::Row) {
+    if constexpr (ORDERING == Dewdrop::Math::EMMultOrdering::Row) {
         //Multiply A's rows by B's columns
         for (int r = 0; r < 4; r++) {
             const auto row = MMult_V4f_M4x4(a.Row(r), b);
@@ -332,7 +333,7 @@ Math::Matrix4x4 Math::Matrix4x4::MMult_M4x4_M4x4(const Matrix4x4& a, const Matri
             out._matrix[(r * 4) + 3] = row.arr[3];
         }
     }
-    else if constexpr (ORDERING == Math::EMMultOrdering::Column) {
+    else if constexpr (ORDERING == Dewdrop::Math::EMMultOrdering::Column) {
         //Multiply A's columns by B's rows
         for (int c = 0; c < 4; c++) {
             const auto col = MMult_V4f_M4x4(a.Column(c), b);

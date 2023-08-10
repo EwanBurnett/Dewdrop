@@ -6,5 +6,7 @@
 # Ignore IDE generated files
 .vs/
 
+# Ignore Docs Build Files
+Docs/Build/
 
 

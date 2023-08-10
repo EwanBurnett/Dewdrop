@@ -17,9 +17,16 @@ int main() {
     GLFWwindow* window = glfwCreateWindow(800, 600, title, nullptr, nullptr);
     
     Log::Message("Hello, World!");
-    Math::Matrix4x4 m;
-    Math::Matrix4x4 m2;
-    auto res = Math::Matrix4x4::MMult_M4x4_M4x4(m, m2);
+    Dewdrop::Math::Vector2f x; 
+    Dewdrop::Math::Vector3f y;
+
+    y.r = 50.0f; 
+    auto r = y.x;
+    auto g = y.b;
+     
+    Dewdrop::Math::Matrix4x4 m;
+    Dewdrop::Math::Matrix4x4 m2;
+    auto res = Dewdrop::Math::Matrix4x4::MMult_M4x4_M4x4(m, m2);
    
 
     while (!glfwWindowShouldClose(window)) {
