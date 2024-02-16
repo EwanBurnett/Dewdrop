@@ -8,5 +8,7 @@ namespace Dewdrop {
         DD_FAILED = 0, 
         DD_SUCCESS = 1,
     };
+
+    typedef uint64_t WindowHandle; 
 }
 #endif

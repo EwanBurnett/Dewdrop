@@ -19,7 +19,7 @@ option(DEWDROP_BUILD_STATIC "Build Dewdrop as a Static Library" ON)
 option(DEWDROP_BUILD_EXAMPLES "Build Example Projects" ON)
 option(DEWDROP_BUILD_TESTS "Build Tests" ON)
 
-set(DEWDROP_SOURCES "include/Dewdrop/Dewdrop.h" "src/Dewdrop.cpp" "include/Dewdrop/Version.h" "include/Dewdrop/Platform.h"  "src/Version.cpp")
+set(DEWDROP_SOURCES "include/Dewdrop/Dewdrop.h" "src/Dewdrop.cpp" "include/Dewdrop/Version.h" "include/Dewdrop/Platform.h"  "src/Version.cpp" "include/Dewdrop/Window.h" "src/Window.cpp")
 
 if(WIN32)
 	set(DEWDROP_SOURCES ${DEWDROP_SOURCES} "src/Platform/DD_Win32.cpp")

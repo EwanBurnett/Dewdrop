@@ -15,18 +15,22 @@ namespace Dewdrop {
     namespace Platform {
         /**
          * @brief Performs Platform-specific Initialisation code
-         * @return DD_SUCCESS upon successful initialisation, or DD_FAILED otherwise. 
+         * @return DD_SUCCESS upon successful initialisation, or DD_FAILED otherwise.
         */
-        DDResult Init(); 
+        DDResult Init();
 
         /**
          * @brief Performs Platform-specific Destruction code
-         * @return DD_SUCCESS upon successful shutdown, or DD_FAILED otherwise. 
+         * @return DD_SUCCESS upon successful shutdown, or DD_FAILED otherwise.
         */
-        DDResult Shutdown(); 
+        DDResult Shutdown();
 
 
-        bool PollEvents(); 
+        bool PollEvents();
+
+
+        DDResult CreateWindow(WindowHandle& window, uint16_t width, uint16_t height, const char* title);
+        DDResult DestroyWindow(WindowHandle& window);
 
     }
 }
