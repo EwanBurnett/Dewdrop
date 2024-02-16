@@ -11,7 +11,8 @@
 #include "Types.h"
 
 namespace Dewdrop {
-
+    
+    class Window; 
     namespace Platform {
         /**
          * @brief Performs Platform-specific Initialisation code
@@ -26,10 +27,10 @@ namespace Dewdrop {
         DDResult Shutdown();
 
 
-        bool PollEvents();
+        bool PollEvents(Window* pWindow);
 
 
-        DDResult CreateWindow(WindowHandle& window, uint16_t width, uint16_t height, const char* title);
+        DDResult CreateWindow(WindowHandle& window, uint16_t width, uint16_t height, const char* title, const Window* pWnd);
         DDResult DestroyWindow(WindowHandle& window);
 
     }

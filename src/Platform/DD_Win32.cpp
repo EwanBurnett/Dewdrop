@@ -2,8 +2,10 @@
 *   Win32 Platform Layer
 */
 #include "Dewdrop/Platform.h"
+#include "Dewdrop/Window.h"
 #include <cstdio> 
 #include <glfw/glfw3.h> 
+
 
 using namespace Dewdrop;
 
@@ -27,19 +29,25 @@ DDResult Platform::Shutdown() {
 }
 
 
-bool Platform::PollEvents() {
+bool Platform::PollEvents(Window* pWindow) {
     glfwPollEvents();
-    return true;
+
+    return !glfwWindowShouldClose(reinterpret_cast<GLFWwindow*>(pWindow->GetHandle()));
 }
 
 
 
-DDResult Platform::CreateWindow(WindowHandle& window, uint16_t width, uint16_t height, const char* title) {
+DDResult Platform::CreateWindow(WindowHandle& window, uint16_t width, uint16_t height, const char* title, const Window* pWindow) {
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+
     GLFWwindow* wnd = glfwCreateWindow(width, height, title, nullptr, nullptr);
+    glfwSetWindowUserPointer(wnd, (void*)(pWindow));
+
     window = reinterpret_cast<WindowHandle>(wnd); 
     if (!window) {
         return DD_FAILED;
     }
+
     return DD_SUCCESS;
 }
 

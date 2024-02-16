@@ -7,8 +7,13 @@
 namespace Dewdrop {
     class Window {
     public: 
+        
         DDResult Create(uint16_t width, uint16_t height, const char* title);
         DDResult Destroy(); 
+
+
+        [[nodiscard]]
+        WindowHandle GetHandle() const; 
     private:
         WindowHandle m_Window; 
 

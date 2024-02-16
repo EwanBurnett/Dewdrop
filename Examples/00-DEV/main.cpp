@@ -1,5 +1,6 @@
 #include <Dewdrop/Dewdrop.h>
 #include <Dewdrop/Window.h>
+#include <Dewdrop/Renderer.h>
 #include <cstdio>
 
 int main() {
@@ -8,14 +9,21 @@ int main() {
     Dewdrop::Window wnd; 
     wnd.Create(800, 560, "Hello!");
 
+    Dewdrop::Renderer renderer; 
+    renderer.Init(&wnd); 
+
     //Run for a couple of frames, to simulate work. 
-    uint64_t frameIdx = 0; 
-    while (frameIdx < 50000) {
-        Dewdrop::Platform::PollEvents();
-        printf("\rFrame %d", ++frameIdx);
+    while (Dewdrop::Platform::PollEvents(&wnd)) {
+        renderer.BeginFrame(); 
+
+        //Eventually, we'll be traversing a scene graph. 
+        renderer.Draw(); 
+
+        renderer.EndFrame(); 
     }
 
     printf("\n");
+    renderer.Shutdown(); 
     wnd.Destroy(); 
     Dewdrop::Platform::Shutdown(); 
 }
