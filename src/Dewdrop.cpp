@@ -1,7 +1,18 @@
 #include "../include/Dewdrop/Dewdrop.h"
 #include "../include/Dewdrop/Version.h"
+#include "../include/Dewdrop/Platform.h"
 #include <cstdio>
 
 void Dewdrop::Init() {
-    printf("Initialising Dewdrop %d.%d.%d.%d\n", DEWDROP_VERSION_MAJOR, DEWDROP_VERSION_MINOR, DEWDROP_VERSION_PATCH, DEWDROP_VERSION_BUILD);
+    printf("Initialising %s\n", GetVersionString().c_str());
+    
+    //Initialize platform-specific code 
+    Dewdrop::Platform::Init(); 
+}
+
+void Dewdrop::Shutdown()
+{
+    printf("Shutting Down...\n");
+
+    Dewdrop::Platform::Shutdown(); 
 }

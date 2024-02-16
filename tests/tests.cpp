@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Dewdrop.h>
+#include <Dewdrop/Version.h>
 
 TEST(Dewdrop, VersionAssertion){
 	EXPECT_EQ(Dewdrop::DEWDROP_VERSION_MAJOR, 0);
