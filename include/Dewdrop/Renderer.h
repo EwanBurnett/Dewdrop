@@ -2,6 +2,8 @@
 #define __DEWDROP_RENDERER_H
 
 #include "Types.h"
+#include "Graphics/Context.h"
+#include "Graphics/Swapchain.h"
 
 namespace Dewdrop {
     class Window;
@@ -16,6 +18,9 @@ namespace Dewdrop {
         void Draw();
     private:
         uint64_t frameIdx = 0;
+
+        Context* m_pContext; 
+        Swapchain* m_pSwapchain; 
     };
 }
 #endif

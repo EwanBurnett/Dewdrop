@@ -6,6 +6,9 @@
 #include <cstdio> 
 #include <glfw/glfw3.h> 
 
+#if DEWDROP_WIN32
+    //Windows-specific functionality can be enabled through this macro. 
+#endif
 
 using namespace Dewdrop;
 

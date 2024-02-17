@@ -29,8 +29,11 @@ namespace Dewdrop {
 
         bool PollEvents(Window* pWindow);
 
-
+#pragma push_macro("CreateWindow")
+        //Undefine the CreateWindow macro, so we can use it as our function name. 
+#undef CreateWindow 
         DDResult CreateWindow(WindowHandle& window, uint16_t width, uint16_t height, const char* title, const Window* pWnd);
+#pragma pop_macro("CreateWindow")
         DDResult DestroyWindow(WindowHandle& window);
 
     }

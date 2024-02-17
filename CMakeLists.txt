@@ -19,10 +19,18 @@ option(DEWDROP_BUILD_STATIC "Build Dewdrop as a Static Library" ON)
 option(DEWDROP_BUILD_EXAMPLES "Build Example Projects" ON)
 option(DEWDROP_BUILD_TESTS "Build Tests" ON)
 
-set(DEWDROP_SOURCES "include/Dewdrop/Dewdrop.h" "src/Dewdrop.cpp" "include/Dewdrop/Version.h" "include/Dewdrop/Platform.h"  "src/Version.cpp" "include/Dewdrop/Window.h" "src/Window.cpp" "include/Dewdrop/Renderer.h" "src/Renderer.cpp")
+set(DEWDROP_SOURCES "include/Dewdrop/Dewdrop.h" "src/Dewdrop.cpp" "include/Dewdrop/Version.h" "include/Dewdrop/Platform.h"  "src/Version.cpp" "include/Dewdrop/Window.h" "src/Window.cpp" "include/Dewdrop/Renderer.h" "src/Renderer.cpp" "include/Dewdrop/Graphics/Context.h" "include/Dewdrop/Graphics/Swapchain.h")
+
+set(DEWDROP_DEPS glfw Vulkan::Vulkan)
+set(DEWDROP_DEFINES )
 
 if(WIN32)
-	set(DEWDROP_SOURCES ${DEWDROP_SOURCES} "src/Platform/DD_Win32.cpp")
+	# DX11 and DX12 are windows only 
+	set(DEWDROP_DEPS ${DEWDROP_DEPS} d3d11.lib d3d12.lib)
+
+		set(DEWDROP_SOURCES ${DEWDROP_SOURCES} "src/Platform/DD_Win32.cpp" "src/Graphics/DX11/DX11_Common.h" "src/Graphics/DX11/DX11_Context.h" "src/Graphics/DX11/DX11_Context.cpp" "src/Graphics/DX11/DX11_Swapchain.h" "src/Graphics/DX11/DX11_Swapchain.cpp")
+
+	set(DEWDROP_DEFINES ${DEWDROP_DEFINES} DEWDROP_WIN32=1)
 endif()
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
@@ -41,8 +49,8 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 	LINKER_LANGUAGE CXX
 	)
 
-target_link_libraries(${PROJECT_NAME} glfw Vulkan::Vulkan)
-
+target_link_libraries(${PROJECT_NAME} ${DEWDROP_DEPS})
+target_compile_definitions(${PROJECT_NAME} PUBLIC ${DEWDROP_DEFINES})
 if(DEWDROP_BUILD_TESTS)
 	add_subdirectory("tests")
 endif()

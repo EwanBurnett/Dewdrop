@@ -2,7 +2,6 @@
 #define __DEWDROP_TYPES_H
 
 #include <cstdint> 
-
 namespace Dewdrop {
     enum DDResult {
         DD_FAILED = 0, 
@@ -10,5 +9,6 @@ namespace Dewdrop {
     };
 
     typedef uint64_t WindowHandle; 
+
 }
 #endif
