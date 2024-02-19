@@ -19,7 +19,7 @@ option(DEWDROP_BUILD_STATIC "Build Dewdrop as a Static Library" ON)
 option(DEWDROP_BUILD_EXAMPLES "Build Example Projects" ON)
 option(DEWDROP_BUILD_TESTS "Build Tests" ON)
 
-set(DEWDROP_SOURCES "include/Dewdrop/Dewdrop.h" "src/Dewdrop.cpp" "include/Dewdrop/Version.h" "include/Dewdrop/Platform.h"  "src/Version.cpp" "include/Dewdrop/Window.h" "src/Window.cpp" "include/Dewdrop/Renderer.h" "src/Renderer.cpp" "include/Dewdrop/Graphics/Context.h" "include/Dewdrop/Graphics/Swapchain.h")
+set(DEWDROP_SOURCES "include/Dewdrop/Dewdrop.h" "src/Dewdrop.cpp" "include/Dewdrop/Version.h" "include/Dewdrop/Platform.h"  "src/Version.cpp" "include/Dewdrop/Window.h" "src/Window.cpp" "include/Dewdrop/Renderer.h" "src/Renderer.cpp" "include/Dewdrop/Graphics/Context.h" "include/Dewdrop/Graphics/Swapchain.h" "include/Dewdrop/Timer.h" "src/Timer.cpp")
 
 set(DEWDROP_DEPS glfw Vulkan::Vulkan)
 set(DEWDROP_DEFINES )
