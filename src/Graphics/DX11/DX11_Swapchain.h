@@ -10,9 +10,13 @@ namespace Dewdrop {
     public: 
         DDResult Create(Context* context, const Window* pWindow) override; 
         DDResult Destroy() override; 
+        DDResult Clear(Context* context) override; 
+        DDResult Present(Context* context) override; 
 
     private:
-        HRESULT CreateSwapchain(WindowHandle hWnd); 
+        Microsoft::WRL::ComPtr<IDXGISwapChain> m_pSwapchain; 
+    private:
+        HRESULT CreateSwapchain(WindowHandle hWnd, DX11_Context* pContext); 
     };
 }
 

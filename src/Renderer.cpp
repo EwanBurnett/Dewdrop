@@ -31,11 +31,13 @@ DDResult Renderer::Shutdown()
 
 void Dewdrop::Renderer::BeginFrame()
 {
+    m_pSwapchain->Clear(m_pContext); 
     printf("\rFrame %d", ++frameIdx);
 }
 
 void Dewdrop::Renderer::EndFrame()
 {
+    m_pSwapchain->Present(m_pContext); 
 }
 
 void Dewdrop::Renderer::Draw()

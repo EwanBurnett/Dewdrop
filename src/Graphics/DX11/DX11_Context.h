@@ -10,10 +10,12 @@ namespace Dewdrop {
     public:
         DDResult Init() override;
         DDResult Shutdown() override;
-    private:
+
+    public: 
         Microsoft::WRL::ComPtr<ID3D11Device> m_pDevice; 
         Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pContext; 
 
+    private:
         HRESULT CreateDeviceAndContext(D3D_FEATURE_LEVEL& featureLevel); 
     };
 }
